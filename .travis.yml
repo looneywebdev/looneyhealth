@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- 8
+deploy:
+  provider: heroku
+  api_key:
+    secure: ts+9qXpbKk0T8GBX1y9rD1D0G19tuy4Q8nxLz8FTf5WHB3MLCUUq4xqNLyFI1JZHasGwgWZyrQ9dSJU9I7iKBlRsf8T+KelTMGxa/4YvVO8YPu4Hs7TV3hcvgsFw2DITDwuwqynOb7KH9MLcW7dZ93sWC6NdppHUQy+NJ4jGkB+jCEFeJ61S2DsO9uKD3Kfkj37sS1gmcNGRTwXRK2flapZ31lPgAfkhnfpUmm1+sSPEwiJ3Fmjwz3RHsB2BfIMDnjQ9ZhUJtfNPbP8PUYv/o+XurnCqmY+WRke17BEHqSECwr+3tMI+vsGS30OoECA7ICNQXc8Q0M/B+c2x19/3aMD3EoVkd0m0mDbg1VfpyEbBk3tJXKNPC4xO1eD898vvwvbRSGeVDRX4iFPBksoRGVueLBjbqyHHELsVLDQH1tp2dLf2piOnugnnznj1SVOFSJ0EvUahk2pc7HpcQdYOkiiDlzTHGpTPF20rlI3XbFF1kySyjlDIMzD7h+x7ALgjRhEjQ8rzQ6+6nuXYYkhQbM990Y28ln+6FnB3pSGOwKMUr4gcFENpLacgysR8aXuwIWCxf0ESQjQvCyGxeMIJ86+UhZrAvtpt+wCtTUnxpVGp4+ihck/QV0lM/KkUu61YHGsa5ijhWrfA2dYP8J9eGZv/y0trn4sMuOXuLou4+xE=
+  app: damp-plains-73885
+  on:
+    repo: looneywebdev/looneyhealth
