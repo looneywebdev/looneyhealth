@@ -111,3 +111,13 @@ function getAndDisplayIngredients() {
 $(function() {
 	getAndDisplayIngredients();
 })
+
+//ajax
+
+// $.ajax({
+//     url: `/ingredients-list/${queryTarget}`,
+//     type: 'GET',
+//     success: function(data) {
+//         $('.js-results').text(data.ingredients.name);
+//     }
+// })
