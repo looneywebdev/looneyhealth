@@ -94,30 +94,89 @@ var MOCK_INGREDIENTS = {
 };
 
 function getRecipes(callbackFn) {
-	setTimeout(function(){ callbackFn(MOCK_INGREDIENTS)}, 1000);
+    $.ajax({
+        method: "GET",
+        url: "/ingredients-list"
+    }).then(function (results,text,xhr) {
+        console.log(results);
+        displayIngredients(results);
+    });
 }
 
-function displayIngredients(data) {
-    for (index in data.ingredients) {
-	   $('body').append(
-        '<p>' + data.ingredients[index].name + '</p>');
+function modifyRecipes(recipe){
+    $.ajax({
+        method: "PUT",
+        url: `/ingredients-list/${recipe.name}`,
+        data: recipe,
+    });
+}
+
+function newRecipe(recipe){
+    $.ajax({
+        method: "POST",
+        url: "/ingredients-list",
+        data: recipe,
+    })
+}
+
+function deleteRecipe(recipe){
+    $.ajax({
+        method: "DELETE",
+        url: `/ingredients-list/${recipe.name}`,
+        data: recipe,
+    }).then(function() {
+        console.log(MOCK_INGREDIENTS);
+    });
+}
+
+
+//display current ingredients
+function displayIngredients(results) {
+    for (index in results.ingredients) {
+	   $('.js-results').html(
+           `<section class="ingredientsname-list"><div class="title-name"><h2>Name of Ingredient</h2></div></section>` +
+        `<div class="name0"><p>` + results.ingredients[0].name + `</p></div>` +
+        `<div class="name1"><p>` + results.ingredients[1].name + `</p></div>`);
     }
 }
 
-function getAndDisplayIngredients() {
-	getRecipes(displayIngredients);
+//event listeners
+
+function displayIng() {
+    $('.display').click(function(ev){
+        console.log('Handling get');
+        ev.preventDefault();
+        getRecipes();
+    })
 }
 
-$(function() {
-	getAndDisplayIngredients();
-})
+function addIng() {
+    $('.add').click(function(ev){
+        console.log('Handling add');
+        ev.preventDefault();
+        newRecipe(4334564, "Turkey", 0.3, "cup", 460, 50, 4, 30);
+    })
+}
 
-//ajax
+function modifyIng() {
+    $('.modify').click(function(ev){
+        console.log('Handling modify');
+        ev.preventDefault();
+        modifyRecipes();
+    })
+}
 
-// $.ajax({
-//     url: `/ingredients-list/${queryTarget}`,
-//     type: 'GET',
-//     success: function(data) {
-//         $('.js-results').text(data.ingredients.name);
-//     }
-// })
+function deleteIng() {
+    $('.delete').click(function(ev){
+        console.log('Handling delete');
+        ev.preventDefault();
+        deleteRecipe();
+    })
+}
+
+//calling event listener functions
+
+$(displayIng);
+$(addIng);
+$(modifyIng);
+$(deleteIng);

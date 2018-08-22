@@ -5,9 +5,9 @@ const bodyParser = require('body-parser');
 
 // const {IngredientsList} = require('./models');
 
-const jsonParser = bodyParser.json();
+// const jsonParser = bodyParser.json();
 const app = express();
-
+app.use(bodyParser.urlencoded());
 app.use(express.static('public'));
 // app.use(morgan('common'));
 
@@ -114,10 +114,20 @@ app.get('/ingredients-list', (req, res) => {
   res.send(MOCK_INGREDIENTS);
 });
 
-app.post('/ingredients-list', jsonParser, (req,res) => {
+app.post('/ingredients-list', (req,res) => {
   MOCK_INGREDIENTS.ingredients.push(req.body);
+  console.log(req);
   res.send(MOCK_INGREDIENTS);
 })
+
+
+//app.put modify ingredient in list
+
+//multiple ingredients to create meals
+
+
+
+//***
 
 // app.post('/ingredients-list', jsonParser, (req, res) => {
 //   const requiredFields = ['name', 'serving', 'unit', 'calories', 'carbs', 'protein', 'fat'];
