@@ -120,9 +120,6 @@ app.post('/ingredients-list', (req,res) => {
   res.send(MOCK_INGREDIENTS);
 })
 
-
-//app.put modify ingredient in list
-
 //multiple ingredients to create meals
 
 
@@ -162,7 +159,7 @@ app.post('/ingredients-list', (req,res) => {
 //     return res.status(400).send(message);
 //   }
 //   console.log(`Updating ingredients item \`${req.params.id}\``);
-//   ShoppingList.update({
+//   IngredientsList.update({
 //     id: req.params.id,
 //     name: req.body.name,
 //     serving: req.body.serving,

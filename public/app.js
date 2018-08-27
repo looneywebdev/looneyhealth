@@ -93,6 +93,8 @@ var MOCK_INGREDIENTS = {
     ]
 };
 
+//ajax functions by method
+
 function getRecipes(callbackFn) {
     $.ajax({
         method: "GET",
@@ -119,11 +121,10 @@ function newRecipe(recipe){
     })
 }
 
-function deleteRecipe(recipe){
+function deleteRecipe(name){
     $.ajax({
         method: "DELETE",
-        url: `/ingredients-list/${recipe.name}`,
-        data: recipe,
+        url: `/ingredients-list/${name}`,
     }).then(function() {
         console.log(MOCK_INGREDIENTS);
     });
@@ -132,12 +133,34 @@ function deleteRecipe(recipe){
 
 //display current ingredients
 function displayIngredients(results) {
+    let template = `<table style="width:75%">
+    <tr>
+      <th>Name</th>
+      <th>Serving</th> 
+      <th>Unit</th>
+      <th>Calories</th>
+      <th>Carbs</th>
+      <th>Protein</th>
+      <th>Fat</th>
+    </tr>`
     for (index in results.ingredients) {
-	   $('.js-results').html(
-           `<section class="ingredientsname-list"><div class="title-name"><h2>Name of Ingredient</h2></div></section>` +
-        `<div class="name0"><p>` + results.ingredients[0].name + `</p></div>` +
-        `<div class="name1"><p>` + results.ingredients[1].name + `</p></div>`);
+	   
+           template += `
+           <tr>
+             <td>${results.ingredients[index].name}</td>
+             <td>${results.ingredients[index].serving}</td>
+             <td>${results.ingredients[index].unit}</td>
+             <td>${results.ingredients[index].calories}</td>
+             <td>${results.ingredients[index].carbs}</td>
+             <td>${results.ingredients[index].protein}</td>
+             <td>${results.ingredients[index].fat}</td>
+           </tr>
+           `
+
     }
+     template += `</table>`;
+
+    $('.js-results').append(template);
 }
 
 //event listeners
@@ -154,7 +177,11 @@ function addIng() {
     $('.add').click(function(ev){
         console.log('Handling add');
         ev.preventDefault();
-        newRecipe(4334564, "Turkey", 0.3, "cup", 460, 50, 4, 30);
+        let newRec = {
+            name: "Turkey",
+
+        };
+        newRecipe(newRec);
     })
 }
 
@@ -170,7 +197,8 @@ function deleteIng() {
     $('.delete').click(function(ev){
         console.log('Handling delete');
         ev.preventDefault();
-        deleteRecipe();
+        const name = $(ev.currentTarget).data('name')
+        deleteRecipe(name);
     })
 }
 

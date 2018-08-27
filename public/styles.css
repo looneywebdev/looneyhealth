@@ -1,11 +1,22 @@
 .name0 {
     color: red;
+    float: left;
 }
 
 .name1 {
     color: green;
+    clear: both;
 }
 
 .title-name {
     text-decoration: underline;
+}
+
+.serving0 {
+    color: blue;
+    float: left;
+}
+
+td {
+    border: 1px solid black;
 }
